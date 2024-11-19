@@ -7,3 +7,4 @@ Agrega un nuevo producto al inicio del array usando unshift.
 Usa splice para eliminar el tercer producto del array.
 Imprime el array final después de las modificaciones.
 */
+
