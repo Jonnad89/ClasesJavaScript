@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo completo del DOM</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #titulo{
+            color: #2d2a71;
+        }
+
+        .btn{
+            background-color: #484142;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover{
+            background-color: #2d2a71;
+        }
+        .item{
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #a9a8a9;
+            color: white;
+        }
+        #contenedor {
+            border: 2px solid #2d2a71;
+            padding: 20px;
+            margin: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        p{
+            color: #484142;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="titulo">Manipulación del DOM</h1>
+    <button id="cambiarTexto" class="btn">Cambiar título</button>
+    <button id="agregarElemento" class="btn">Agregar Elemento</button>
+    <button id="elminarElemento" class="btn">Eliminar último Elemento</button>
+    <ul id="lista">
+        <li class="item">Elemento 1</li>
+        <li class="item">Elemento 2</li>
+    </ul>
+
+
+    <div id="contenedor">
+
+        <!-- Este contenido será reemplazado -->
+
+        <p>Contenido original del contenedor.</p>
+    </div>
+
+    <button id="cambiarContenido">
+        Cambiar Contenido
+    </button>
+
+
+
+    <script>
+        // Seleccionamos el contendor por su ID
+        let contenedor = document.getElementById("contenedor")
+
+        // Seleccionamos el botón por su ID
+        let boton = document.getElementById("cambiarContenido")
+
+        // Agregamos un evento al botón
+        boton.addEventListener("click", () =>{
+            // Reemplazamos el contenido del contenedor con un nuevo párrafo
+            contenedor.innerHTML = "<p> Este es un párrafo nuevo, generado dinámicamente </p>"
+        })
+
+
+
+// -------------------------------------------------
+        const titulo = document.querySelector("#titulo")
+        const lista = document.querySelector("#lista")
+        const botones = document.querySelectorAll(".btn")
+
+        // Cambiar el texto del titulo
+        const botonCambiarTexto = document.querySelector("#cambiarTexto")
+        botonCambiarTexto.addEventListener("click", () => {
+            titulo.innerText = "El título cambio dinamicamente";
+            titulo.style.color = "#ff5733"; // cambia el estilo
+        });
+
+        // Agregar un nuevo elemento a la lista
+        const botonAgregarElemento = document.querySelector("#agregarElemento");
+        botonAgregarElemento.addEventListener("click", () =>{
+            const nuevoElemento = document.createElement("li");
+            nuevoElemento.className = "item"; // Asigna clase
+            nuevoElemento.innerText = `Elemento ${lista.children.length + 1}`;
+            lista.appendChild(nuevoElemento); // Agregar al final de la lista
+        })
+
+        // Eliminar el último elemento de la lista
+        const botonEliminarElemento = document.querySelector("#elminarElemento");
+        botonEliminarElemento.addEventListener("click", () => {
+            if (lista.lastElementChild) {
+                lista.removeChild(lista.lastElementChild);
+            } else {
+                alert("No hay más elementos para eliminar.")
+            }
+        });
+
+        botones.forEach(boton => {
+            console.log(`Botón con texto: ${boton.innerText}`)
+        })
+    </script>
+</body>
+</html>
