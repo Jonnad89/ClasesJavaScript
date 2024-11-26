@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Asíncronas</title>
+</head>
+<body>
+    <h1>Ejemplo de Asincronía</h1>
+    <button id="btn">Obtener datos</button>
+    <div id="resultado"></div>
+    <script>
+        //Callback
+        function mostrarConCallback(callback){
+            setTimeout(() =>{
+                callback("Datos cargados con callback");
+            }, 2000);
+        }
+
+        mostrarConCallback((mensaje) => console.log(mensaje))
+
+        // Promesa
+        function obtenerConPromesa() {
+            return new Promise((resolve, reject) =>{
+                setTimeout(() =>{
+                    console.log("Datos cargados con Promesa")
+                }, 3000)
+            });
+        }
+
+        obtenerConPromesa()
+            .then((mensaje) => console.log(mensaje))
+            .catch((error) => console.log(error))
+    
+
+            // async/await
+
+            async function obtenerConAsyncAwait() {
+                let btn = document.getElementById("btn");
+                let resultado = document.getElementById("resultado");
+
+                btn.addEventListener("click", async () =>{
+                    resultado.textContent = "Cargando...";
+                    try {
+                        let datos = await obtenerConPromesa();
+                        resultado.textContent = datos;
+                    } catch (error) {
+                        resultado.textContent = "Error al cargar datos"
+                    }
+                });
+    
+            }
+
+            obtenerConAsyncAwait();
+    </script>
+</body>
+</html>
