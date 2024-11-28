@@ -33,3 +33,4 @@ mostrarUsuario(1);
 
 // Llamamos a la función con un ID nválido
 mostrarUsuario(-1)
+
