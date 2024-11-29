@@ -1,0 +1,1 @@
+// Define un objeto en JavaScript, conviértelo a formato JSON y luego vuelve a convertirlo a un objeto.
