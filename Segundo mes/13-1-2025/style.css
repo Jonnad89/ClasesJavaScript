@@ -1,0 +1,29 @@
+.resaltado {
+    color: red;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.cambiado {
+    color: blue;
+    background-color: yellow;
+    padding: 10px;
+}
+
+.destacado {
+    color: orange;
+    font-size: italic;
+}
+
+
+.rojo {
+    background-color: red;
+    color: white;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+}
+
+.verde {
+    background-color: green;
+}
