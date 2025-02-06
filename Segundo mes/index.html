@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo del DOM Avanzado</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <h1 id="titulo">Manejo del DOM</h1>
+    <p class="destacado">Este es un párrafo destacado.</p>
+    <p>Otro párrafo sin clase especial.</p>
+    <button class="boton">Haz click</button>
+
+
+
+    <ul id="lista">
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+    </ul>
+
+    <button id="boton2">Click para desactivar evento</button>
+
+    <script>
+        const lista = document.getElementById("lista")
+
+        lista.addEventListener("click", (event) => {
+            if (event.target.tagName === "LI") {
+                console.log(`Click en: ${event.target.textContent}`)
+            }
+        })
+
+        // Código para el botón
+        const boton2 = document.getElementById("boton2")
+
+        function mensaje() {
+            console.log("Evento activado");
+        }
+
+        boton2.addEventListener("click", mensaje)
+
+        setTimeout(()=> {
+            boton2.removeEventListener("click", mensaje);
+            console.log("Evento removido")
+        }, 5000)
+
+
+
+    </script>
+
+    <script src="./main.js"></script>
+</body>
+</html>
