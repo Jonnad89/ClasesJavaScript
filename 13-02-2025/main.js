@@ -75,9 +75,9 @@ formulario.addEventListener("submit", (e) => {
 //     spanContador.textContent = contador;
 //    }
 // })
-let contador = 0;
 const maximo = 10;
 const minimo = 0;
+let contador = localStorage.getItem("contador") ? parseInt(localStorage.getItem("contador")) : 0;
 
 const spanContador = document.getElementById("contador");
 const mensaje = document.getElementById("mensaje");
@@ -85,9 +85,15 @@ const btnIncrementar = document.getElementById("incrementar")
 const btnDecrementar = document.getElementById("decrementar")
 const btnResetear = document.getElementById("resetear")
 
+// Carga de sonidos
+const sonidoIncrementar = document.getElementById("sonidoIncrementar")
+const sonidoDecrementar = document.getElementById("sonidoDecrementar")
+const sonidoResetear = document.getElementById("sonidoResetear")
+
 function actualizarContador() {
     spanContador.textContent = contador;
     mensaje.textContent = "";
+    localStorage.setItem("contador", contador); // Guardamos en localStorage
 
     // Deshabilitar botones si se alcanza el limite
 
@@ -97,11 +103,18 @@ function actualizarContador() {
     // Mensaje de alerta cuando se alcanzan los límites
     if (contador === maximo) mensaje.textContent = "Has alcanzado el limite maximo"
     if (contador === minimo) mensaje.textContent = "No puedes bajar de 0"
+
+    // Aplicar animación
+    spanContador.classList.add("animacion");
+    setTimeout(() => {
+        spanContador.classList.remove("animacion")
+    }, 200)
 }
 
 btnIncrementar.addEventListener("click", () =>{
     if(contador < maximo) {
         contador++;
+        sonidoIncrementar.play()
         actualizarContador()
     }
 })
@@ -109,14 +122,17 @@ btnIncrementar.addEventListener("click", () =>{
 btnDecrementar.addEventListener("click", () => {
     if(contador > minimo) {
         contador --;
+        sonidoDecrementar.play()
         actualizarContador()
     }
 })
 
 btnResetear.addEventListener("click", () =>{
     contador = 0;
+    sonidoResetear.play()
     actualizarContador()
 })
 
 // Llamamos a la función para inicializar correctamente los botones
 actualizarContador()
+
