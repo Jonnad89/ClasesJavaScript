@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Almacenamiento Web</title>
+    <style>
+        body {
+            font-family:Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #mensaje {
+            font-size: 24px;
+            margin: 20px;
+        }
+        .alerta {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- <h1>Bienvenido <span id="usuario"></span></h1>
+    <input type="text" id="nombre" placeholder="Ingresa tu nombre">
+    <button id="guardar">Guardar</button> -->
+    <!-- <h1>Has visitado esta página <span id="contador">0</span></h1>
+
+    <h1>Elegir un color de fondo</h1>
+    <button onclick="cambiarColor('lightblue')">Azul</button>
+    <button onclick="cambiarColor('lightgreen')">Verde</button>
+    <button onclick="cambiarColor('lightpink')">Rosa</button> -->
+    <!-- <h1>Formulario con SessionStorage</h1>
+    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="text" id="apellido" placeholder="Apellido">  -->
+
+    <h1 id="mensaje">Selecciona un idioma</h1>
+    <button onclick="cambiarIdioma('es')">Español</button>
+    <button onclick="cambiarIdioma('en')">Inglés</button>
+    <button onclick="eliminarCookies()">Eliminar Cookie</button>
+    <button onclick="mostrarCookies()">Ver Cookies</button>
+
+    <p id="alerta" class="alerta"></p>
+    <script>
+              // function cambiarColor(color) {
+              //     document.body.style.backgroundColor = color;
+              //     localStorage.setItem("colorFondo", color);
+              // }
+
+              // Aplicar el color guardado al cargar la página
+              // document.addEventListener("DOMContentLoaded", () =>{
+              //     let colorGuardado = localStorage.getItem("colorFondo");
+              //     if (colorGuardado) {
+              //         document.body.style.backgroundColor = colorGuardado
+              //     }
+              // })
+
+          //    const nombreInput = document.getElementById("nombre");
+          //    const apellidoInput = document.getElementById("apellido");
+
+             // Guardar en Sessionstorage
+          //    nombreInput.addEventListener("input", () =>{
+          //     sessionStorage.setItem("nombre", nombreInput.value)
+          //    });
+
+          //    apellidoInput.addEventListener("input", () =>{
+          //     sessionStorage.setItem("apellido", apellidoInput.value)
+          //    });
+
+             // Recuperar datos al recargar
+          //    document.addEventListener("DOMContentLoaded", () => {
+          //     if (sessionStorage.getItem("nombre")) {
+          //         nombreInput.value = sessionStorage.getItem("nombre");
+          //     }
+          //     if (sessionStorage.getItem("apellido")) {
+          //         apellidoInput.value = sessionStorage.getItem("apellido")
+          //     }
+          //    })
+
+          // Cookies
+          function cambiarIdioma(idioma) {
+              document.cookie = `idioma=${idioma}; path=/; max-age=86400` //1 día de duración
+              aplicarIdioma()
+          }
+
+          function obtenerCookie(nombre) {
+              let cookies = document.cookie.split("; ");
+              for (let cookie of cookies) {
+                  let [clave, valor] = cookie.split("=");
+                  if (clave === nombre) return valor;
+              }
+              return null
+          }
+
+          function aplicarIdioma() {
+              let idioma = obtenerCookie("idioma");
+              if (idioma === "es") {
+                  document.getElementById("mensaje").textContent ="hola, Bienvenido";
+               } else if (idioma === "en") {
+                  document.getElementById("mensaje").textContent = "Hello, welcome";
+               }
+          }
+
+          
+
+
+      function eliminarCookies() {
+        document.cookie ="idioma=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        alert("Cookie eliminada");
+        location.reload(); // Recargar la página para ver el cambio
+      }
+
+      function mostrarCookies() {
+        alert(`Cookies almacenadas: ${document.cookie || "No hay cookies"}`)
+      }
+
+      document.addEventListener("DOMContentLoaded", aplicarIdioma)
+    </script>
+    <script src="./main.js"></script>
+  </body>
+</html>
