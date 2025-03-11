@@ -42,7 +42,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
             usuarios.forEach(usuario => {
                 let li = document.createElement('li')
-                lista.textContent = usuario.name;
+                //lista.textContent = usuario.name; ACÁ ESTABA EL ERROR
+                li.textContent = usuario.name; // linea corregida
                 lista.appendChild(li)
             });
         } catch (error) {
