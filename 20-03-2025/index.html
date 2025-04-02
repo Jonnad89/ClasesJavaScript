@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delegación de eventos</title>
+  </head>
+  <body>
+    <button id="agregar">Agregar Item</button>
+    <ul id="lista"></ul>
+
+    <!-- Ejemplo evento personalizado-->
+
+    <h2>Evento personalizado</h2>
+
+    <button id="notificar">Mostrar notificaciones</button>
+
+    <!-- Propagación de Eventos y stropPropagation() -->
+    <h2>Propagación de Eventos y stropPropagation()</h2>
+
+    <div id="abuelo" style="padding: 30px; background: lightblue">
+      Abuelo
+      <div id="padre" style="padding: 20px; background: lightgreen">
+        Padre
+        <div id="hijo" style="padding: 10px; background: lightcoral">
+            Hijo
+        </div>
+      </div>
+    </div>
+
+<!-- ejemplo con Once  -->
+
+<h2>Ejemplo con once {once: true}</h2>
+
+<button id="unaVez">Haz click una vez</button>
+
+<!-- Remover un evento dinámicamente -->
+ <h2>Remover un evento dinámicamente</h2>
+
+<button id="iniciar">Iniciar Contador</button>
+<button id="detener">Detener Contador</button>
+<p id="contador">0</p>
+
+    <script>
+      let contador = 1;
+      document.getElementById("agregar").addEventListener("click", function () {
+        let nuevoItem = document.createElement("li");
+        nuevoItem.textContent = "Item" + contador++;
+        document.getElementById("lista").appendChild(nuevoItem);
+      });
+
+      document
+        .getElementById("lista")
+        .addEventListener("click", function (event) {
+          if (event.target.tagName === "LI") {
+            console.log("Click en:", event.target.textContent);
+          }
+        });
+      // Ejemplo evento personalizado
+      document.addEventListener("notificacion", function (event) {
+        console.log("Notificación recibida:", event.detail);
+      });
+      document
+        .getElementById("notificar")
+        .addEventListener("click", function () {
+          let evento = new CustomEvent("notificacion", {
+            detail: "Tienes un nuevo mensaje",
+          });
+          document.dispatchEvent(evento);
+        });
+
+      // Propagación de Eventos y stropPropagation()
+
+      document.getElementById("abuelo").addEventListener("click", () => console.log("Click en abuelo"))
+      document.getElementById("padre").addEventListener("click", () => console.log("Click en padre"))
+      document.getElementById("hijo").addEventListener("click", (event) => {
+        console.log("click en Hijo");
+        event.stopPropagation(); // Detiene la propagación
+      })
+
+      // Ejemplo con once {once:true}
+      document.getElementById("unaVez").addEventListener("click", () => {
+        console.log("Este evento solo ocurre una vez")
+      }, { once: true })
+
+      // Remover un evento dinámicamente
+
+      let intervalo = null;
+      function aumentarContador() {
+        let contador = document.getElementById("contador");
+        contador.textContent = parseInt(contador.textContent) +1;
+      }
+
+      document.getElementById("iniciar").addEventListener("click", function() {
+       if(!intervalo) { // Verifica si ya hay un intervalo activo
+        intervalo = setInterval(aumentarContador, 1000)
+        console.log("Contador iniciado...")
+       }
+      });
+
+      document.getElementById("detener").addEventListener("click", function(){
+        if (intervalo) {
+            clearInterval(intervalo); // Detiene el intervalo
+            intervalo = null; // Reinicia la variable para permitir un nuevo inicio
+            console.log("Contador detenido")
+        }
+      })
+
+    </script>
+  </body>
+</html>
