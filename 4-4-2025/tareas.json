@@ -1,0 +1,14 @@
+[
+  {
+    "titulo": "estudiar",
+    "completado": false
+  },
+  {
+    "titulo": "comer",
+    "completado": false
+  },
+  {
+    "titulo": "manejar",
+    "completado": false
+  }
+]
