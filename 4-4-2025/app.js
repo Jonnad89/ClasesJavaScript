@@ -22,7 +22,7 @@ const rl = readline.createInterface({
 
 function mostrarMenu() {
     console.log("tareas cargadas:", tareas)
-    console.log(`\n===GESTOR DE TAREAS ===`)
+    console.log(`\n ===GESTOR DE TAREAS ===`)
     console.log(`1. Ver tareas`)
     console.log(`2. Agregar tarea`)
     console.log(`3. Completar tarea`)
@@ -45,7 +45,8 @@ rl.question('Elige una opción:', opcion => {
             return
         case '3':
             rl.question('Número de tarea a completar:', num => {
-                completarTarea(parseInt(num) -1, tareas)
+                const indice = parseInt(num) -1;
+                completarTarea(indice, tareas)
                 guardarTareas(tareas)
                 console.log('✅ Tarea completada')
                 mostrarMenu()
@@ -75,7 +76,8 @@ function mostrarTareas() {
     console.log("No hay tareas.")
  } else {
     tareas.forEach((tarea, i) =>{
-        console.log(`${i + 1}. ${tarea.titulo} [${tarea.completado ?"✔" : "✘" }]`)
+        const estado = tarea.completado ? '✔' : '✘';
+        console.log(`${i + 1}. [${estado}] ${tarea.titulo}`)
     })
  }
  mostrarMenu()

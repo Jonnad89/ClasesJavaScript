@@ -6,7 +6,7 @@ const archivo = path.resolve("./tareas.json")
 
 export function guardarTareas(tareas) {
     try {
-        fs.writeFileSync(archivo, JSON.stringify(tareas, null, 2))
+        fs.writeFileSync(archivo, JSON.stringify(tareas, null, 2), 'utf-8')
     } catch(error){
     console.error("Error al guardar tareas:", error)
 }

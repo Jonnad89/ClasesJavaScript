@@ -1,14 +1,14 @@
 [
   {
-    "titulo": "estudiar",
-    "completado": false
-  },
-  {
     "titulo": "comer",
-    "completado": false
+    "completado": true
   },
   {
-    "titulo": "manejar",
+    "titulo": "leer",
+    "completado": true
+  },
+  {
+    "titulo": "correr",
     "completado": false
   }
 ]

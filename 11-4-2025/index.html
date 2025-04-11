@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de productos</title>
+</head>
+<style>
+    body{
+        font-family: serif;
+        padding: 20px;
+    }
+    button {
+        margin: 5px;
+    }
+</style>
+<body>
+    
+    <h1>Gestor de productos</h1>
+
+    <button onclick="mostrarProductos()">Mostrar productos</button>
+    <button onclick="filtrarBaratos()">Filtrar < $50</button>
+    <button onclick="ordenarPorNombre()">Ordenar por nombre</button>
+    <button onclick="ordenarPorPrecio()">Ordenar por precio</button>
+    <button onclick="calcularTotal()">Total de stock</button>
+    <button onclick="eliminarProducto()">Eliminar producto</button>
+
+    <ul id="listaProductos"></ul>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
