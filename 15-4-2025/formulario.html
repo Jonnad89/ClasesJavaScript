@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        .error{
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h2>Formulario de Registro</h2>
+    <form id="formulario">
+        <label >Nombre: <input type="text" id="nombre"/></label> <br>
+        <span id="errorNombre" class="error"></span> <br /><br />
+
+        <label >Email: <input type="email" id="email" /></label> <br /> <br />
+        <span id="errorEmail" class="error"></span> <br /> <br />
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        const form = document.getElementById("formulario")
+        const nombre = document.getElementById("nombre")
+        const email = document.getElementById("email")
+        const errorNombre = document.getElementById("errorNombre")
+        const errorEmail = document.getElementById("errorEmail")
+
+        form.addEventListener("submit", e => {
+            e.preventDefault()
+            let valido = true
+
+            errorNombre.textContent = '';
+            errorEmail.textContent = '';
+
+            if (nombre.value.trim().length < 3) {
+                errorNombre.textContent = 'Debe tener al menos 3 caracteres'
+                valido = false;
+            }
+
+            if (!email.value.includes('@')) {
+                errorEmail.textContent = 'Email no válido'
+                valido = false
+            }
+
+            if (valido) {
+                console.log("Datos Enviados:", {
+                    nombre: nombre.value,
+                    email: email.value
+                })
+                alert('Formulario enviado correctamente')
+                form.reset()
+            }
+        })
+    </script>
+</body>
+</html>
