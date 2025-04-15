@@ -27,3 +27,8 @@ formulario de ingreso de tareas
 
     .completada { text-decoration: line-through; }
     Array.prototype.filter()
+
+        * PLUS
+        editar tareas
+        agregar selector de prioridad
+        ordenar tareas por hora
